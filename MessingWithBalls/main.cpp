@@ -4,13 +4,17 @@
 #include "./MySDL/MySDL.h"
 #include "./MySDL/MyTexture.h"
 
+#include "Ball/GlobalCollections.h"
+
 int main(int argc, char* args[])
 {
+    Point<int> screenSize = { 1280, 960 };
+    MySDL mySDL = MySDL(screenSize);
     
-    MySDL mySDL= MySDL();
+    MyTexture ballTexture = MyTexture(std::string("assests\\Ball.png"), &mySDL);
     
-    MyTexture ball = MyTexture(std::string("D:\\Projects\\C++\\MessingWithBalls\\MessingWithBalls\\assests\\Ball.png"), &mySDL);
-
+    createBall(screenSize / 2, { 128, 128 });
+    createBall({0, 0}, {128, 128});
 
 
     //Hack to get window to stay up
@@ -23,7 +27,7 @@ int main(int argc, char* args[])
             if (e.type == SDL_QUIT) { quit = true; }
         }
         mySDL.clearWindow();
-        ball.render(0, 0);
+        drawBalls(&ballTexture);
         mySDL.renderWindow();
     }
 

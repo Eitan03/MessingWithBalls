@@ -1,8 +1,7 @@
 #pragma once
 #include <SDL.h>
+#include "../Utils/Point.h"
 
-#define SCREEN_HEIGHT 480
-#define SCREEN_WIDTH 640
 
 class MyTexture;
 
@@ -11,14 +10,14 @@ class MySDL
 	friend class MyTexture;
 public:
 
-	MySDL();
+	MySDL(Point<int> windowSize);
 	~MySDL();
 
 
 	void clearWindow();
 	void renderWindow();
 private:
-	void init();
+	void init(Point<int> windowSize);
 	void close();
 
 	SDL_Window* sdl_window;

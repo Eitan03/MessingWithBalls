@@ -22,8 +22,8 @@ MyTexture::MyTexture(std::string path, MySDL* mySDL)
 	}
 
 	//Get image dimensions
-	this->width = loadedSurface->w;
-	this->height = loadedSurface->h;
+	this->size.x = loadedSurface->w;
+	this->size.y = loadedSurface->h;
 
 	//Get rid of old loaded surface
 	SDL_FreeSurface(loadedSurface);
@@ -36,14 +36,13 @@ MyTexture::~MyTexture()
 	{
 		SDL_DestroyTexture(this->sdl_texture);
 		this->sdl_texture = NULL;
-		this->width = 0;
-		this->height = 0;
+		this->size = Point<int>(0, 0);
 	}
 }
 
-void MyTexture::render(int x, int y)
+void MyTexture::render(Point<int> size, Point<int> position)
 {
-	SDL_Rect renderQuad = { x, y, this->width, this->height };
+	SDL_Rect renderQuad = { position.x, position.y, size.x, size.y };
 
 	SDL_RenderCopy(this->mySDL->sdl_renderer, this->sdl_texture, NULL, &renderQuad);
 }

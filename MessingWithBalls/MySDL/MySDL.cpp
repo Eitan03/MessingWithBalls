@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 
-void MySDL::init()
+void MySDL::init(Point<int> windowSize)
 {
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -10,13 +10,13 @@ void MySDL::init()
 		throw std::exception((std::string("SDL could not initialize! SDL Error: ") + SDL_GetError()).c_str());
 	}
 	//Set texture filtering to linear
-	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, 0))
 	{
-		printf("Warning: Linear texture filtering not enabled!");
+		printf("Warning: Couldnt set render scale qulity!");
 	}
 
 	//Create window
-	sdl_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	sdl_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowSize.x, windowSize.y, SDL_WINDOW_SHOWN);
 	if (sdl_window == NULL)
 	{
 		throw std::exception((std::string("Window could not be created! SDL Error: ") + SDL_GetError()).c_str());
@@ -54,9 +54,9 @@ void MySDL::close()
 	SDL_Quit();
 }
 
-MySDL::MySDL()
+MySDL::MySDL(Point<int> windowSize)
 {
-	init();
+	init(windowSize);
 }
 
 MySDL::~MySDL()

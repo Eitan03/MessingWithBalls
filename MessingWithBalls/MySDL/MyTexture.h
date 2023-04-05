@@ -10,15 +10,13 @@ public:
 	MyTexture(std::string path, MySDL* mySDL);
 	~MyTexture();
 
-	int getWidth() { return this->width; }
-	int getHeight() { return this->height; }
+	int getWidth() { return this->size.x; }
+	int getHeight() { return this->size.y; }
 
-	void render(int x, int y);
+	void render(Point<int> size, Point<int> position);
 private:
 	MySDL* mySDL;
 	SDL_Texture* sdl_texture;
-	int width;
-	int height;
-
+	Point<int> size;
 };
 

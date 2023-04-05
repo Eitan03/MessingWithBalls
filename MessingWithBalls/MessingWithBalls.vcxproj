@@ -147,16 +147,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball\Ball.cpp" />
+    <ClCompile Include="Ball\GlobalCollections.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MySDL\MySDL.cpp" />
     <ClCompile Include="MySDL\MyTexture.cpp" />
+    <ClCompile Include="Utils\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball\GlobalCollections.h" />
+    <ClInclude Include="Ball\Ball.h" />
     <ClInclude Include="MySDL\MySDL.h" />
     <ClInclude Include="MySDL\MyTexture.h" />
+    <ClInclude Include="Utils\Timer.h" />
+    <ClInclude Include="Utils\Color.h" />
+    <ClInclude Include="Utils\Point.h" />
+    <ClInclude Include="Utils\Rect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
